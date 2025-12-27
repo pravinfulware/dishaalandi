@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ===== CONFIG ===== */
   const SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbz7WKZKpxhHU3qDgStEfps_Rn1bF_2Szs7k0Smq8zJq1RbuDi8Ae7DJDlbrKrAeYAsjJg/exec";
+    "https://script.google.com/macros/s/AKfycbywfgLETShjD-nNYcjasy4ptEfXI5YqDuLq0d5KKS2wDjKAoT3QWbdBaVo4Wm1Wo6vS2A/exec";
 
   const WHATSAPP_NUMBER = "918956444441";
 
