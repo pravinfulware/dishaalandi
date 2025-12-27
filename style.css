@@ -232,3 +232,81 @@ body{margin:0;font-family:Poppins,sans-serif;background:var(--bg);color:var(--te
   }
 }
 
+/* ===============================
+   MOBILE STICKY ACTION BAR
+   =============================== */
+@media (max-width:768px){
+  .mobile-sticky-bar{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    display:flex;
+    gap:10px;
+    padding:12px;
+    background:#ffffff;
+    box-shadow:0 -4px 15px rgba(0,0,0,.1);
+    z-index:9999;
+  }
+
+  .mobile-sticky-bar a,
+  .mobile-sticky-bar button{
+    flex:1;
+    border:none;
+    border-radius:999px;
+    padding:14px;
+    font-size:16px;
+    font-weight:600;
+    text-align:center;
+  }
+
+  .call-btn{
+    background:#22c55e;
+    color:#fff;
+    text-decoration:none;
+  }
+
+  .whatsapp-btn{
+    background:#ff6a00;
+    color:#fff;
+  }
+}
+
+/* ===============================
+   MOBILE SLIDE-UP MODAL
+   =============================== */
+@media (max-width:768px){
+  .modal-card{
+    position:fixed;
+    bottom:-100%;
+    left:0;
+    right:0;
+    width:100%;
+    margin:0;
+    border-radius:20px 20px 0 0;
+    animation:slideUp .35s ease forwards;
+  }
+
+  @keyframes slideUp{
+    to{bottom:0}
+  }
+}
+
+/* ===============================
+   MOBILE SPEED OPTIMIZATION
+   =============================== */
+@media (max-width:768px){
+  *{
+    -webkit-tap-highlight-color:transparent;
+  }
+
+  button{
+    touch-action:manipulation;
+  }
+
+  img{
+    max-width:100%;
+    height:auto;
+  }
+}
+
