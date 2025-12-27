@@ -1,4 +1,15 @@
 
+const revealItems=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting)e.target.classList.add('show');
+  });
+},{threshold:0.2});
+revealItems.forEach(el=>obs.observe(el));
+
+
+
+
 /* Theme */
 const toggle=document.getElementById('themeToggle');
 toggle.onclick=()=>document.body.classList.toggle('dark');
