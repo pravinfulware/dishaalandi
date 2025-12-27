@@ -1,6 +1,4 @@
-/* ==================================================
-   ROOT + THEME
-   ================================================== */
+
 :root{
   --accent:#ff6a00;
   --accent2:#ff8a00;
@@ -18,97 +16,35 @@ body.dark{
 }
 
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Poppins,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-}
+body{margin:0;font-family:Poppins,sans-serif;background:var(--bg);color:var(--text)}
 
-/* ==================================================
-   TOGGLE
-   ================================================== */
-.theme-toggle{
-  position:fixed;
-  top:20px;
-  right:20px;
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  border:none;
-  background:var(--card);
-  cursor:pointer;
-  z-index:1000;
-}
+/* Toggle */
+.theme-toggle{position:fixed;top:20px;right:20px;width:44px;height:44px;border-radius:50%;border:none;background:var(--card);cursor:pointer;z-index:1000}
 
-/* ==================================================
-   BUTTONS
-   ================================================== */
-.primary-btn{
-  background:var(--accent);
-  color:#fff;
-  padding:14px 28px;
-  border:none;
-  border-radius:999px;
-  font-size:16px;
-}
+/* Buttons */
+.primary-btn{background:var(--accent);color:#fff;padding:14px 28px;border:none;border-radius:999px;font-size:16px}
+.white-btn{background:#fff;color:var(--accent);padding:14px 28px;border:none;border-radius:999px}
 
-.white-btn{
-  background:#fff;
-  color:var(--accent);
-  padding:14px 28px;
-  border:none;
-  border-radius:999px;
-}
+/* Hero */
+.hero{text-align:center;padding:90px 20px;background:var(--accent);color:#fff}
 
-/* ==================================================
-   HERO
-   ================================================== */
-.hero{
-  text-align:center;
-  padding:90px 20px;
-  background:var(--accent);
-  color:#fff;
-}
-
-/* ==================================================
-   FEATURES (DESKTOP FIRST)
-   ================================================== */
-.features-section{
-  padding:70px 20px;
-  text-align:center;
-}
-
-.section-title{
-  font-size:28px;
-  margin-bottom:40px;
-}
-
-.features-grid{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:24px;
-}
+/* Features */
+.features-section{padding:70px 20px;text-align:center}
+.section-title{font-size:28px;margin-bottom:40px}
+.features-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
 
 .feature-card{
   background:var(--card);
   padding:30px 22px;
   border-radius:16px;
   box-shadow:0 10px 25px rgba(0,0,0,.08);
+  transition:.35s;
   border:2px solid transparent;
-  min-height:180px;               /* CLS FIX */
-  transition:.35s ease;
-}
-
-/* Reveal animation (safe) */
-.reveal:not(.show){
   opacity:0;
   transform:translateY(40px);
 }
 
-.reveal.show{
+.feature-card.show{
   opacity:1;
   transform:none;
 }
@@ -119,129 +55,45 @@ body{
   box-shadow:0 16px 40px rgba(255,106,0,.35);
 }
 
-/* ==================================================
-   COURSES (DESKTOP FIRST)
-   ================================================== */
-.courses-section{
-  margin:40px auto;
-  padding:40px 20px;
-  max-width:1200px;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  border-radius:22px;
-  color:#fff;
-  text-align:center;
+.f-icon svg{
+  width:36px;
+  height:36px;
+  stroke:var(--accent);
+  fill:none;
+  stroke-width:2;
+  margin-bottom:12px;
 }
 
-.courses-title{
-  font-size:26px;
-  margin-bottom:30px;
-}
+/* Courses */
+.courses-section{margin:40px auto;padding:40px 20px;max-width:1200px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:22px;color:#fff;text-align:center}
+.courses-title{font-size:26px;margin-bottom:30px}
+.courses-wrapper{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.course-col{background:rgba(255,255,255,.15);padding:24px;border-radius:16px;text-align:left}
+.course-col h3{text-align:center;margin-bottom:14px}
+.course-col ul{list-style:none;padding:0;margin:0}
+.course-col li{padding:8px 0;border-bottom:1px solid rgba(255,255,255,.25)}
 
-.courses-wrapper{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
-}
+/* Icon row */
+.course-icons{display:flex;justify-content:center;gap:40px;padding:24px 20px}
+.icon-item{display:flex;flex-direction:column;align-items:center;font-weight:600}
+.icon-item span{margin-top:6px}
 
-.course-col{
-  background:rgba(255,255,255,.15);
-  padding:24px;
-  border-radius:16px;
-}
+/* Discount strip */
+.discount-strip{position:relative;padding:60px 20px 90px;background:linear-gradient(135deg,var(--accent2),var(--accent))}
+.discount-inner{max-width:1100px;margin:auto;background:rgba(255,255,255,.15);border-radius:20px;padding:36px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.discount-points span{margin-right:20px;color:#fff}
+.floating-inquire{position:absolute;right:30px;bottom:20px;background:#fff;color:var(--accent);padding:12px 20px;border:none;border-radius:999px}
 
-.course-col h3{
-  text-align:center;
-  margin-bottom:14px;
-}
+/* Modal */
+.modal{position:fixed;inset:0;display:none;z-index:9999}
+.modal.active{display:block}
+.modal-overlay{position:absolute;inset:0;background:rgba(0,0,0,.6)}
+.modal-card{background:var(--card);max-width:520px;margin:10vh auto;padding:40px;border-radius:20px;position:relative;text-align:center}
+.close-btn{position:absolute;top:10px;right:14px;font-size:26px;border:none;background:none}
+.enquiry-form input,.enquiry-form select{width:100%;padding:14px;margin:10px 0;border-radius:10px;border:1px solid #ddd}
 
-.course-col ul{
-  list-style:none;
-  padding:0;
-  margin:0;
-}
-
-.course-col li{
-  padding:8px 0;
-  border-bottom:1px solid rgba(255,255,255,.25);
-}
-
-/* ==================================================
-   DISCOUNT STRIP
-   ================================================== */
-.discount-strip{
-  padding:60px 20px;
-  background:linear-gradient(135deg,var(--accent2),var(--accent));
-}
-
-.discount-inner{
-  max-width:1100px;
-  margin:auto;
-  background:rgba(255,255,255,.15);
-  border-radius:20px;
-  padding:36px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:16px;
-}
-
-.discount-points span{
-  margin-right:20px;
-  color:#fff;
-}
-
-/* ==================================================
-   MODAL
-   ================================================== */
-.modal{
-  position:fixed;
-  inset:0;
-  display:none;
-  z-index:9999;
-}
-
-.modal.active{
-  display:block;
-}
-
-.modal-overlay{
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.6);
-}
-
-.modal-card{
-  background:var(--card);
-  max-width:520px;
-  margin:10vh auto;
-  padding:40px;
-  border-radius:20px;
-  position:relative;
-  text-align:center;
-}
-
-.close-btn{
-  position:absolute;
-  top:10px;
-  right:14px;
-  font-size:26px;
-  border:none;
-  background:none;
-}
-
-.enquiry-form input,
-.enquiry-form select{
-  width:100%;
-  padding:14px;
-  margin:10px 0;
-  border-radius:10px;
-  border:1px solid #ddd;
-}
-
-/* ==================================================
-   SUCCESS
-   ================================================== */
+/* Success */
+/* ===== SUCCESS ANIMATION ===== */
 .success-box{
   display:none;
   text-align:center;
@@ -261,6 +113,7 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
+  animation:pop .4s ease;
 }
 
 .checkmark{
@@ -269,106 +122,373 @@ body{
   border-right:6px solid #fff;
   border-bottom:6px solid #fff;
   transform:rotate(45deg);
+  animation:draw .4s ease .2s forwards;
 }
 
-/* ==================================================
-   MOBILE FLOATING ICON FAB (ONLY SYSTEM USED)
-   ================================================== */
-@media (max-width:768px){
+@keyframes pop{
+  0%{transform:scale(0)}
+  100%{transform:scale(1)}
+}
 
-  .mobile-fab{
+@keyframes draw{
+  from{height:0;width:0}
+  to{height:50px;width:28px}
+}
+
+
+
+
+/* =========================
+   MOBILE RESPONSIVE FIXES
+   ========================= */
+
+/* Mobile first */
+@media (max-width: 768px) {
+
+  /* Hero */
+  .hero {
+    padding: 60px 16px;
+  }
+
+  .hero h1 {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  /* Buttons */
+  .primary-btn,
+  .white-btn,
+  .floating-inquire {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  /* Features */
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    padding: 20px;
+  }
+
+  /* Courses */
+  .courses-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .course-col {
+    text-align: center;
+  }
+
+  /* Discount strip */
+  .discount-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .discount-points span {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  /* Floating button */
+  .floating-inquire {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    width: auto;
+    padding: 12px 18px;
+    z-index: 999;
+  }
+
+  /* Modal */
+  .modal-card {
+    width: 92%;
+    margin: 8vh auto;
+    padding: 24px;
+  }
+
+  .enquiry-form input,
+  .enquiry-form select {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  /* Success animation */
+  .checkmark-circle {
+    width: 70px;
+    height: 70px;
+  }
+
+  .checkmark {
+    width: 22px;
+    height: 38px;
+  }
+}
+
+/* ===============================
+   MOBILE STICKY ACTION BAR
+   =============================== */
+@media (max-width:768px){
+  .mobile-sticky-bar{
     position:fixed;
-    right:16px;
-    bottom:calc(16px + env(safe-area-inset-bottom));
+    bottom:0;
+    left:0;
+    width:100%;
     display:flex;
-    flex-direction:column;
-    gap:14px;
+    gap:10px;
+    padding:12px;
+    background:#ffffff;
+    box-shadow:0 -4px 15px rgba(0,0,0,.1);
     z-index:9999;
   }
 
-  .fab{
-    width:56px;
-    height:56px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
-    box-shadow:0 10px 25px rgba(0,0,0,.25);
-    animation:pulse 2s infinite;
+  .mobile-sticky-bar a,
+  .mobile-sticky-bar button{
+    flex:1;
+    border:none;
+    border-radius:999px;
+    padding:14px;
+    font-size:16px;
+    font-weight:600;
+    text-align:center;
   }
 
-  .call-fab{
+  .call-btn{
     background:#22c55e;
     color:#fff;
+    text-decoration:none;
   }
 
-  .whatsapp-fab{
-    background:#25D366;
+  .whatsapp-btn{
+    background:#ff6a00;
     color:#fff;
-    animation-delay:.4s;
-  }
-
-  body.modal-open .mobile-fab{
-    display:none;
   }
 }
 
-@keyframes pulse{
-  0%{box-shadow:0 0 0 0 rgba(0,0,0,.3)}
-  70%{box-shadow:0 0 0 16px rgba(0,0,0,0)}
-  100%{box-shadow:0 0 0 0 rgba(0,0,0,0)}
-}
-
-/* ==================================================
-   MOBILE OVERRIDE (FINAL)
-   ================================================== */
+/* ===============================
+   MOBILE SLIDE-UP MODAL
+   =============================== */
 @media (max-width:768px){
-
-  .hero{
-    padding:60px 16px;
-  }
-
-  .features-grid,
-  .courses-wrapper{
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-  }
-
-  .course-col{
-    text-align:center;
-  }
-
-  .discount-inner{
-    flex-direction:column;
-    text-align:center;
-  }
-
   .modal-card{
-    width:92%;
-    margin:8vh auto;
-    padding-bottom:120px;
+    position:fixed;
+    bottom:-100%;
+    left:0;
+    right:0;
+    width:100%;
+    margin:0;
+    border-radius:20px 20px 0 0;
+    animation:slideUp .35s ease forwards;
   }
 
-  body{
-    padding-bottom:90px;
+  @keyframes slideUp{
+    to{bottom:0}
   }
+}
 
+/* ===============================
+   MOBILE SPEED OPTIMIZATION
+   =============================== */
+@media (max-width:768px){
   *{
     -webkit-tap-highlight-color:transparent;
   }
 
-  button,a{
+  button{
     touch-action:manipulation;
+  }
+
+  img{
+    max-width:100%;
+    height:auto;
+  }
+}
+/* ==========================
+   FIX FEATURE CARDS VISIBILITY (DESKTOP)
+   ========================== */
+
+.features-section {
+  display: block;
+  visibility: visible;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.feature-card {
+  display: block;
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+}
+/* Reveal animation safe fallback */
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: none;
+}
+
+
+/* =========================
+   MOBILE FLOATING ICON FAB
+   ========================= */
+@media (max-width: 768px) {
+
+  .mobile-fab {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+  }
+
+  .fab {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.25);
+    cursor: pointer;
+  }
+
+  .call-fab {
+    background: #22c55e;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .whatsapp-fab {
+    background: #25D366;
+    color: #fff;
+  }
+}
+/* ============================
+   MOBILE CARD ALIGNMENT FIX
+   ============================ */
+@media (max-width: 768px) {
+
+  /* FEATURES */
+  .features-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px;
+  }
+
+  .feature-card {
+    width: 100% !important;
+  }
+
+  /* COURSES */
+  .courses-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px;
+  }
+
+  .course-col {
+    width: 100% !important;
+  }
+
+}
+
+/* ============================
+   FLOATING ICON POSITION FIX
+   ============================ */
+@media (max-width: 768px) {
+
+  .mobile-fab {
+    position: fixed !important;
+    right: 16px !important;
+    bottom: 16px !important;
+    z-index: 9999 !important;
+    pointer-events: auto;
+  }
+
+  /* Prevent any parent affecting FAB */
+  .features-section,
+  .courses-section,
+  .discount-strip {
+    position: relative;
+    overflow: visible;
   }
 }
 
-/* ==================================================
-   IMAGE SAFETY
-   ================================================== */
-img{
-  max-width:100%;
-  height:auto;
-  display:block;
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 80px;
+  }
+}
+/* =========================
+   MOBILE FLOATING ICON FAB
+   ========================= */
+@media (max-width: 768px) {
+
+  .mobile-fab {
+    position: fixed;
+    right: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    z-index: 9999;
+  }
+
+  .fab {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.25);
+    cursor: pointer;
+    animation: pulse 2s infinite;
+  }
+
+  .call-fab {
+    background: #22c55e;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .whatsapp-fab {
+    background: #25D366;
+    color: #fff;
+    animation-delay: .4s;
+  }
+
+  /* Pulse animation */
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0,0,0,.3); }
+    70% { box-shadow: 0 0 0 16px rgba(0,0,0,0); }
+    100% { box-shadow: 0 0 0 0 rgba(0,0,0,0); }
+  }
+
+  /* Hide FAB when modal is open */
+  body.modal-open .mobile-fab {
+    display: none;
+  }
 }
