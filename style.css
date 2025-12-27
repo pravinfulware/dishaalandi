@@ -72,7 +72,7 @@ body{
 }
 
 /* ==================================================
-   FEATURES — DESKTOP FIRST
+   FEATURES (DESKTOP FIRST)
    ================================================== */
 .features-section{
   padding:70px 20px;
@@ -98,39 +98,29 @@ body{
   border-radius:16px;
   box-shadow:0 10px 25px rgba(0,0,0,.08);
   border:2px solid transparent;
-  min-height:180px; /* CLS FIX */
+  min-height:180px;               /* CLS FIX */
   transition:.35s ease;
+}
+
+/* Reveal animation (safe) */
+.reveal:not(.show){
+  opacity:0;
+  transform:translateY(40px);
+}
+
+.reveal.show{
   opacity:1;
   transform:none;
 }
 
-/* Hover only on desktop */
-@media (hover:hover){
-  .feature-card:hover{
-    transform:translateY(-6px);
-    border-color:var(--accent);
-    box-shadow:0 16px 40px rgba(255,106,0,.35);
-  }
+.feature-card:hover{
+  border-color:var(--accent);
+  transform:translateY(-6px);
+  box-shadow:0 16px 40px rgba(255,106,0,.35);
 }
 
 /* ==================================================
-   REVEAL ANIMATION (MOBILE ONLY – SAFE)
-   ================================================== */
-@media (max-width:768px){
-  .reveal{
-    opacity:0;
-    transform:translateY(40px);
-    transition:.35s ease;
-  }
-
-  .reveal.show{
-    opacity:1;
-    transform:none;
-  }
-}
-
-/* ==================================================
-   COURSES — DESKTOP FIRST
+   COURSES (DESKTOP FIRST)
    ================================================== */
 .courses-section{
   margin:40px auto;
@@ -211,7 +201,9 @@ body{
   z-index:9999;
 }
 
-.modal.active{display:block}
+.modal.active{
+  display:block;
+}
 
 .modal-overlay{
   position:absolute;
@@ -256,7 +248,9 @@ body{
   padding:40px 20px;
 }
 
-.success-box.active{display:block}
+.success-box.active{
+  display:block;
+}
 
 .checkmark-circle{
   width:90px;
@@ -278,9 +272,10 @@ body{
 }
 
 /* ==================================================
-   MOBILE FLOATING ICON FAB (ONLY SYSTEM)
+   MOBILE FLOATING ICON FAB (ONLY SYSTEM USED)
    ================================================== */
 @media (max-width:768px){
+
   .mobile-fab{
     position:fixed;
     right:16px;
@@ -326,7 +321,7 @@ body{
 }
 
 /* ==================================================
-   MOBILE OVERRIDE — FINAL & CLEAN
+   MOBILE OVERRIDE (FINAL)
    ================================================== */
 @media (max-width:768px){
 
@@ -360,7 +355,9 @@ body{
     padding-bottom:90px;
   }
 
-  *{-webkit-tap-highlight-color:transparent}
+  *{
+    -webkit-tap-highlight-color:transparent;
+  }
 
   button,a{
     touch-action:manipulation;
