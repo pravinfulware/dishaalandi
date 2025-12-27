@@ -135,10 +135,26 @@ if (phoneInput) {
   });
 }
 
-  const form = document.getElementById("enquiryForm");
+   const form = document.getElementById("enquiryForm");
   const successBox = document.getElementById("successBox");
 
-  if (!form) return;
+
+if (!form) {
+  console.error("❌ enquiryForm not found");
+} else {
+  console.log("✅ enquiryForm found");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    console.log("✅ Submit clicked");
+
+    const data = Object.fromEntries(new FormData(form).entries());
+    console.log("Form Data:", data);
+
+    // rest of your code...
+  });
+}
+
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
