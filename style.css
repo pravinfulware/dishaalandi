@@ -383,4 +383,53 @@ body{margin:0;font-family:Poppins,sans-serif;background:var(--bg);color:var(--te
     color: #fff;
   }
 }
+/* ============================
+   MOBILE CARD ALIGNMENT FIX
+   ============================ */
+@media (max-width: 768px) {
 
+  /* FEATURES */
+  .features-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px;
+  }
+
+  .feature-card {
+    width: 100% !important;
+  }
+
+  /* COURSES */
+  .courses-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px;
+  }
+
+  .course-col {
+    width: 100% !important;
+  }
+
+}
+
+/* ============================
+   FLOATING ICON POSITION FIX
+   ============================ */
+@media (max-width: 768px) {
+
+  .mobile-fab {
+    position: fixed !important;
+    right: 16px !important;
+    bottom: 16px !important;
+    z-index: 9999 !important;
+    pointer-events: auto;
+  }
+
+  /* Prevent any parent affecting FAB */
+  .features-section,
+  .courses-section,
+  .discount-strip {
+    position: relative;
+    overflow: visible;
+  }
+}
