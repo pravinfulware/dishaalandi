@@ -343,3 +343,21 @@ body{margin:0;font-family:Poppins,sans-serif;background:var(--bg);color:var(--te
   transform: none;
 }
 
+
+/* =========================
+   FIX MOBILE BUTTON OVERLAP
+   ========================= */
+@media (max-width: 768px) {
+
+  /* Give space for sticky bar */
+  .modal-card {
+    padding-bottom: 120px; /* space for Call + WhatsApp bar */
+  }
+
+}
+@media (max-width: 768px) {
+  body.modal-open .mobile-sticky-bar {
+    display: none;
+  }
+}
+
