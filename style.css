@@ -433,3 +433,10 @@ body{margin:0;font-family:Poppins,sans-serif;background:var(--bg);color:var(--te
     overflow: visible;
   }
 }
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 80px;
+  }
+}
+
