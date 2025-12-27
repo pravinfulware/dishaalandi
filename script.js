@@ -107,6 +107,30 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ======================
      FORM SUBMIT
      ====================== */
+
+  /* ======================
+   PHONE VALIDATION (INDIA)
+   ====================== */
+const phoneInput = document.querySelector(
+  '#enquiryForm input[name="phone"]'
+);
+
+if (phoneInput) {
+  phoneInput.addEventListener("input", () => {
+    // Allow digits only
+    phoneInput.value = phoneInput.value.replace(/\D/g, '');
+
+    // Validate Indian number
+    if (!/^[6-9]\d{9}$/.test(phoneInput.value)) {
+      phoneInput.setCustomValidity(
+        "Please enter a valid 10-digit Indian mobile number"
+      );
+    } else {
+      phoneInput.setCustomValidity("");
+    }
+  });
+}
+
   const form = document.getElementById("enquiryForm");
   const successBox = document.getElementById("successBox");
 
@@ -116,6 +140,11 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     const data = Object.fromEntries(new FormData(form).entries());
+
+    if (!/^[6-9]\d{9}$/.test(data.phone)) {
+  alert("Please enter a valid Indian mobile number");
+  return;
+}
 
     await fetch(
       "https://script.google.com/macros/s/AKfycbywfgLETShjD-nNYcjasy4ptEfXI5YqDuLq0d5KKS2wDjKAoT3QWbdBaVo4Wm1Wo6vS2A/exec",
