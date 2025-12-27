@@ -134,3 +134,101 @@ body{margin:0;font-family:Poppins,sans-serif;background:var(--bg);color:var(--te
   from{height:0;width:0}
   to{height:50px;width:28px}
 }
+
+
+
+
+/* =========================
+   MOBILE RESPONSIVE FIXES
+   ========================= */
+
+/* Mobile first */
+@media (max-width: 768px) {
+
+  /* Hero */
+  .hero {
+    padding: 60px 16px;
+  }
+
+  .hero h1 {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  /* Buttons */
+  .primary-btn,
+  .white-btn,
+  .floating-inquire {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  /* Features */
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    padding: 20px;
+  }
+
+  /* Courses */
+  .courses-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .course-col {
+    text-align: center;
+  }
+
+  /* Discount strip */
+  .discount-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .discount-points span {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  /* Floating button */
+  .floating-inquire {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    width: auto;
+    padding: 12px 18px;
+    z-index: 999;
+  }
+
+  /* Modal */
+  .modal-card {
+    width: 92%;
+    margin: 8vh auto;
+    padding: 24px;
+  }
+
+  .enquiry-form input,
+  .enquiry-form select {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  /* Success animation */
+  .checkmark-circle {
+    width: 70px;
+    height: 70px;
+  }
+
+  .checkmark {
+    width: 22px;
+    height: 38px;
+  }
+}
+
