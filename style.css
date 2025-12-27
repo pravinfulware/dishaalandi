@@ -309,4 +309,37 @@ body{margin:0;font-family:Poppins,sans-serif;background:var(--bg);color:var(--te
     height:auto;
   }
 }
+/* ==========================
+   FIX FEATURE CARDS VISIBILITY (DESKTOP)
+   ========================== */
+
+.features-section {
+  display: block;
+  visibility: visible;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.feature-card {
+  display: block;
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+}
+/* Reveal animation safe fallback */
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: none;
+}
 
