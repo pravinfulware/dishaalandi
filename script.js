@@ -29,50 +29,99 @@ setTimeout(()=>{
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    /* Improve mobile modal close */
-document.addEventListener("keydown", e=>{
-  if(e.key==="Escape"){
-    document.getElementById("enquiryModal").classList.remove("active");
+
+  /* ======================
+     REVEAL ON SCROLL
+     ====================== */
+  const revealItems = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('show');
+    });
+  }, { threshold: 0.2 });
+  revealItems.forEach(el => obs.observe(el));
+
+
+  /* ======================
+     THEME TOGGLE
+     ====================== */
+  const toggle = document.getElementById('themeToggle');
+  if (toggle) {
+    toggle.onclick = () => document.body.classList.toggle('dark');
   }
-});
 
 
-  /* ===== CONFIG ===== */
-  const SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbywfgLETShjD-nNYcjasy4ptEfXI5YqDuLq0d5KKS2wDjKAoT3QWbdBaVo4Wm1Wo6vS2A/exec";
+  /* ======================
+     MODAL CONTROLS
+     ====================== */
+  const modal = document.getElementById('enquiryModal');
 
-  const WHATSAPP_NUMBER = "918956444441";
+  function openModal() {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
 
-  /* ===== ELEMENTS ===== */
-  const form = document.getElementById("enquiryForm");
+  function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
 
+  document.querySelectorAll('.open-modal').forEach(btn => {
+    btn.addEventListener('click', openModal);
+  });
 
-  /* ===== FORM SUBMIT ===== */
- const successBox = document.getElementById("successBox");
+  const closeBtn = document.querySelector('.close-btn');
+  const overlay = document.querySelector('.modal-overlay');
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+  if (closeBtn) closeBtn.onclick = closeModal;
+  if (overlay) overlay.onclick = closeModal;
 
-
-
-
-  const data = Object.fromEntries(new FormData(form).entries());
-
-  await fetch(
-    "https://script.google.com/macros/s/AKfycbywfgLETShjD-nNYcjasy4ptEfXI5YqDuLq0d5KKS2wDjKAoT3QWbdBaVo4Wm1Wo6vS2A/exec",
-    {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
+  /* ESC key closes modal (THIS IS WHAT YOU ASKED ABOUT) */
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeModal();
     }
-  );
+  });
 
-  /* Hide form, show success */
-  form.style.display = "none";
-  successBox.classList.add("active");
 
-  /* WhatsApp message */
-  const message = `
+  /* ======================
+     AUTO POPUP (ONCE)
+     ====================== */
+  setTimeout(() => {
+    if (!localStorage.getItem('popupShown')) {
+      openModal();
+      localStorage.setItem('popupShown', 'yes');
+    }
+  }, 6000);
+
+
+  /* ======================
+     FORM SUBMIT
+     ====================== */
+  const form = document.getElementById("enquiryForm");
+  const successBox = document.getElementById("successBox");
+
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbywfgLETShjD-nNYcjasy4ptEfXI5YqDuLq0d5KKS2wDjKAoT3QWbdBaVo4Wm1Wo6vS2A/exec",
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+      }
+    );
+
+    /* Show success animation */
+    form.style.display = "none";
+    successBox.classList.add("active");
+
+    const message = `
 Hello DISHA Computer Institute 👋
 
 📘 Course: ${data.course}
@@ -80,38 +129,17 @@ Hello DISHA Computer Institute 👋
 
 👤 Name: ${data.name}
 📞 Phone: ${data.phone}
-  `;
+    `;
 
-  setTimeout(() => {
-    window.location.href =
-      "https://wa.me/918956444441?text=" + encodeURIComponent(message);
+    setTimeout(() => {
+      window.location.href =
+        "https://wa.me/918956444441?text=" + encodeURIComponent(message);
 
-    /* Reset for next user */
-    form.reset();
-    form.style.display = "block";
-    successBox.classList.remove("active");
-    modal.classList.remove("active");
-  }, 1500);
+      form.reset();
+      form.style.display = "block";
+      successBox.classList.remove("active");
+      closeModal();
+    }, 1500);
+  });
+
 });
-
-
-
-function showSuccess(){
-  var s = document.getElementById("successPopup");
-  if(s){ s.classList.add("active"); }
-}
-
-function submitInquiryForm(form){
-  event.preventDefault();
-  var data = new FormData(form);
-
-  fetch(form.action, { method:'POST', body:data })
-  .then(r=>r.text())
-  .then(()=>{
-    showSuccess();
-    var msg = encodeURIComponent("Thank you! Your inquiry has been submitted.");
-    window.open("https://wa.me/918956444441?text="+msg,"_blank");
-    form.reset();
-  })
-  .catch(()=>alert("Submission failed"));
-}
