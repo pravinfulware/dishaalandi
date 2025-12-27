@@ -492,3 +492,10 @@ body{margin:0;font-family:Poppins,sans-serif;background:var(--bg);color:var(--te
     display: none;
   }
 }
+.modal-overlay {
+  pointer-events: auto;
+}
+
+.modal-card {
+  pointer-events: auto;
+}
