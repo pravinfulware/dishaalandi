@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ===== ELEMENTS ===== */
   const form = document.getElementById("enquiryForm");
-  const modal = document.getElementById("enquiryModal");
+
 
   /* ===== FORM SUBMIT ===== */
  const successBox = document.getElementById("successBox");
