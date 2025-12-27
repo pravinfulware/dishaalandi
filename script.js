@@ -41,21 +41,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("enquiryModal");
 
   /* ===== FORM SUBMIT ===== */
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+ const successBox = document.getElementById("successBox");
 
-    const data = Object.fromEntries(new FormData(form).entries());
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    try {
-      /* Send data to Google Sheet */
-      await fetch(SCRIPT_URL, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" }
-      });
+  const data = Object.fromEntries(new FormData(form).entries());
 
-      /* WhatsApp message */
-      const message = `
+  await fetch(
+    "https://script.google.com/macros/s/AKfycbywfgLETShjD-nNYcjasy4ptEfXI5YqDuLq0d5KKS2wDjKAoT3QWbdBaVo4Wm1Wo6vS2A/exec",
+    {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    }
+  );
+
+  /* Hide form, show success */
+  form.style.display = "none";
+  successBox.classList.add("active");
+
+  /* WhatsApp message */
+  const message = `
 Hello DISHA Computer Institute 👋
 
 📘 Course: ${data.course}
@@ -63,23 +70,20 @@ Hello DISHA Computer Institute 👋
 
 👤 Name: ${data.name}
 📞 Phone: ${data.phone}
-📧 Email: ${data.email}
-      `;
+  `;
 
-      /* Redirect to WhatsApp */
-      window.location.href =
-        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  setTimeout(() => {
+    window.location.href =
+      "https://wa.me/918956444441?text=" + encodeURIComponent(message);
 
-      form.reset();
-      modal.classList.remove("active");
-
-    } catch (err) {
-      alert("Something went wrong. Please try again.");
-      console.error(err);
-    }
-  });
-
+    /* Reset for next user */
+    form.reset();
+    form.style.display = "block";
+    successBox.classList.remove("active");
+    modal.classList.remove("active");
+  }, 1500);
 });
+
 
 
 function showSuccess(){
