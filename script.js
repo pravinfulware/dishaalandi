@@ -171,7 +171,7 @@ if (!form) {
   body: JSON.stringify(data)
 });
 
-    );
+  
 
     /* Show success animation */
     form.style.display = "none";
