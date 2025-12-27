@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disha Computer Institute | Best Place for Learning</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
+</head>
+<body>
+
+<button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+
+<!-- HERO (kept minimal as earlier) -->
+<section class="hero">
+  <h1>Best Place for Learning</h1>
+  <p>Admission Open • Job Oriented IT Courses</p>
+  <button class="primary-btn" onclick="openModal()">Inquire Now</button>
+</section>
+
+<!-- FEATURES (card style per image) -->
+<section class="features-section">
+  <h2 class="section-title">Features of DISHA Computer Institute</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="f-icon">🏵️</div>
+      <h3>Digital Certificate</h3>
+      <p>Get certified upon course completion</p>
+    </div>
+    <div class="feature-card">
+      <div class="f-icon">🎥</div>
+      <h3>Video Tutorials</h3>
+      <p>High-quality video learning content</p>
+    </div>
+    <div class="feature-card highlight">
+      <div class="f-icon">❓</div>
+      <h3>Question Bank</h3>
+      <p>Practice with extensive question sets</p>
+    </div>
+    <div class="feature-card">
+      <div class="f-icon">💻</div>
+      <h3>Online Exam</h3>
+      <p>Test your knowledge online</p>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES (orange container with three columns per image) -->
+<section class="courses-section">
+  <h2 class="courses-title">Available Courses</h2>
+  <div class="courses-wrapper">
+    <div class="course-col">
+      <h3>Office & Finance</h3>
+      <ul>
+        <li>MS-OFFICE</li>
+        <li>ADV. EXCEL</li>
+        <li>TALLY</li>
+        <li>GST</li>
+      </ul>
+    </div>
+    <div class="course-col">
+      <h3>Design & Graphics</h3>
+      <ul>
+        <li>2D CAD</li>
+        <li>3D CAD</li>
+        <li>CORELDRAW</li>
+        <li>PHOTOSHOP</li>
+      </ul>
+    </div>
+    <div class="course-col">
+      <h3>Programming & AI</h3>
+      <ul>
+        <li>C PROGRAMMING</li>
+        <li>C++</li>
+        <li>CANVA</li>
+        <li>CHAT GPT</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ICON ROW ABOVE DISCOUNT -->
+<section class="course-icons">
+  <div class="icon-item">☕<span>JAVA</span></div>
+  <div class="icon-item">🐍<span>PYTHON</span></div>
+  <div class="icon-item">🐘<span>PHP</span></div>
+  <div class="icon-item">🖌️<span>WEB DESIGNING</span></div>
+</section>
+
+<!-- DISCOUNT STRIP (per image) -->
+<section class="discount-strip">
+  <div class="discount-inner">
+    <div class="discount-points">
+      <span>🎓 Expert Instructors</span>
+      <span>🏅 ISO Certified</span>
+      <span>⏳ Limited Time Deal</span>
+    </div>
+    <button class="white-btn" onclick="openModal()">🎓 Enroll Now</button>
+  </div>
+  <button class="floating-inquire" onclick="openModal()">💬 Inquire Now</button>
+</section>
+
+<!-- POPUP ENQUIRY -->
+<div class="modal" id="enquiryModal">
+  <div class="modal-overlay" onclick="closeModal()"></div>
+  <div class="modal-card">
+    <button class="close-btn" onclick="closeModal()">×</button>
+    <h2>🎓 Start Your Learning Journey</h2>
+    <p>Fill out the form below and we’ll get back to you shortly!</p>
+    <form class="enquiry-form">
+      <input placeholder="Full Name" required>
+      <input placeholder="Email Address" required>
+      <input placeholder="Phone Number" required>
+      <select required>
+        <option>Select Course</option>
+        <option>Java</option>
+        <option>Python</option>
+        <option>PHP</option>
+        <option>Web Designing</option>
+      </select>
+      <select required>
+        <option>Select Learning Center</option>
+        <option>Alandi</option>
+        <option>Shikrapur</option>
+        <option>Karjat</option>
+      </select>
+      <button type="submit" class="primary-btn">Submit Inquiry</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
