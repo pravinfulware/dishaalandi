@@ -16,8 +16,17 @@ toggle.onclick=()=>document.body.classList.toggle('dark');
 
 /* Modal */
 const modal=document.getElementById('enquiryModal');
-function openModal(){modal.classList.add('active');document.body.style.overflow='hidden'}
-function closeModal(){modal.classList.remove('active');document.body.style.overflow=''}
+function openModal() {
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  document.body.classList.add("modal-open");
+}
+
+function closeModal() {
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+  document.body.classList.remove("modal-open");
+}
 
 /* Auto-open once after 6s */
 setTimeout(()=>{
