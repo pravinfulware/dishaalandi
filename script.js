@@ -1,75 +1,108 @@
+
+const revealItems=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting)e.target.classList.add('show');
+  });
+},{threshold:0.2});
+revealItems.forEach(el=>obs.observe(el));
+
+
+
+
+/* Theme */
+const toggle=document.getElementById('themeToggle');
+toggle.onclick=()=>document.body.classList.toggle('dark');
+
+/* Modal */
+const modal=document.getElementById('enquiryModal');
+function openModal() {
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  document.body.classList.add('modal-open');
+}
+
+function closeModal() {
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+  document.body.classList.remove('modal-open');
+}
+
+/* Auto-open once after 6s */
+setTimeout(()=>{
+ if(!localStorage.getItem('popupShown')){
+  openModal();
+  localStorage.setItem('popupShown','yes');
+ }
+},6000);
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ======================
      REVEAL ON SCROLL
      ====================== */
-  const revealItems = document.querySelectorAll(".reveal");
+  const revealItems = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('show');
+    });
+  }, { threshold: 0.2 });
+  revealItems.forEach(el => obs.observe(el));
 
-  if (revealItems.length) {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-        }
-      });
-    }, { threshold: 0.2 });
-
-    revealItems.forEach(el => observer.observe(el));
-  }
 
   /* ======================
      THEME TOGGLE
      ====================== */
-  const toggle = document.getElementById("themeToggle");
+  const toggle = document.getElementById('themeToggle');
   if (toggle) {
-    toggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark");
-    });
+    toggle.onclick = () => document.body.classList.toggle('dark');
   }
+
 
   /* ======================
      MODAL CONTROLS
      ====================== */
-  const modal = document.getElementById("enquiryModal");
-  const openButtons = document.querySelectorAll(".open-modal");
-  const closeBtn = document.querySelector(".close-btn");
-  const overlay = document.querySelector(".modal-overlay");
+  const modal = document.getElementById('enquiryModal');
 
   function openModal() {
-    modal.classList.add("active");
-    document.body.style.overflow = "hidden";
-    document.body.classList.add("modal-open");
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
 
   function closeModal() {
-    modal.classList.remove("active");
-    document.body.style.overflow = "";
-    document.body.classList.remove("modal-open");
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
   }
 
-  openButtons.forEach(btn =>
-    btn.addEventListener("click", openModal)
-  );
+  document.querySelectorAll('.open-modal').forEach(btn => {
+    btn.addEventListener('click', openModal);
+  });
 
-  if (closeBtn) closeBtn.addEventListener("click", closeModal);
-  if (overlay) overlay.addEventListener("click", closeModal);
+  const closeBtn = document.querySelector('.close-btn');
+  const overlay = document.querySelector('.modal-overlay');
 
-  /* ESC key closes modal */
-  document.addEventListener("keydown", e => {
+  if (closeBtn) closeBtn.onclick = closeModal;
+  if (overlay) overlay.onclick = closeModal;
+
+  /* ESC key closes modal (THIS IS WHAT YOU ASKED ABOUT) */
+  document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       closeModal();
     }
   });
 
+
   /* ======================
      AUTO POPUP (ONCE)
      ====================== */
   setTimeout(() => {
-    if (!localStorage.getItem("popupShown")) {
+    if (!localStorage.getItem('popupShown')) {
       openModal();
-      localStorage.setItem("popupShown", "yes");
+      localStorage.setItem('popupShown', 'yes');
     }
   }, 6000);
+
 
   /* ======================
      FORM SUBMIT
@@ -93,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     );
 
-    /* Success animation */
+    /* Show success animation */
     form.style.display = "none";
     successBox.classList.add("active");
 
@@ -109,8 +142,7 @@ Hello DISHA Computer Institute 👋
 
     setTimeout(() => {
       window.location.href =
-        "https://wa.me/918956444441?text=" +
-        encodeURIComponent(message);
+        "https://wa.me/918956444441?text=" + encodeURIComponent(message);
 
       form.reset();
       form.style.display = "block";
