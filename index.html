@@ -119,28 +119,50 @@
     <button class="close-btn" onclick="closeModal()">×</button>
     <h2>🎓 Start Your Learning Journey</h2>
     <p>Fill out the form below and we’ll get back to you shortly!</p>
-   <form id="enquiryForm" class="enquiry-form">
-      <input placeholder="Full Name" required>
-      <input placeholder="Email Address" required>
-      <input placeholder="Phone Number" required>
-      <select required>
-        <option>Select Course</option>
-        <option>Java</option>
-        <option>Python</option>
-        <option>PHP</option>
-        <option>Web Designing</option>
-      </select>
-      <select required>
-        <option>Select Learning Center</option>
-        <option>Alandi</option>
-        <option>Shikrapur</option>
-        <option>Karjat</option>
-      </select>
-     <button type="submit" class="primary-btn">
-  Submit Inquiry
-</button>
+  <form id="enquiryForm" class="enquiry-form">
 
-    </form>
+  <input 
+    type="text"
+    name="name"
+    placeholder="Full Name"
+    required
+  >
+
+  <input 
+    type="email"
+    name="email"
+    placeholder="Email Address"
+    required
+  >
+
+  <input 
+    type="tel"
+    name="phone"
+    placeholder="Phone Number"
+    required
+  >
+
+  <select name="course" required>
+    <option value="">Select Course</option>
+    <option value="Java">Java</option>
+    <option value="Python">Python</option>
+    <option value="PHP">PHP</option>
+    <option value="Web Designing">Web Designing</option>
+  </select>
+
+  <select name="branch" required>
+    <option value="">Select Learning Center</option>
+    <option value="Alandi">Alandi</option>
+    <option value="Shikrapur">Shikrapur</option>
+    <option value="Karjat">Karjat</option>
+  </select>
+
+  <button type="submit" class="primary-btn">
+    Submit Inquiry
+  </button>
+
+</form>
+
 
      <div class="success-box" id="successBox">
       <div class="checkmark-circle"><div class="checkmark"></div></div>
