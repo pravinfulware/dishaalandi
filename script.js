@@ -1,4 +1,4 @@
-
+/*
 const revealItems=document.querySelectorAll('.reveal');
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
@@ -7,7 +7,7 @@ const obs=new IntersectionObserver(entries=>{
 },{threshold:0.2});
 revealItems.forEach(el=>obs.observe(el));
 
-
+*/
 
 
 /* Theme */
