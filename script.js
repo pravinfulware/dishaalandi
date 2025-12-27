@@ -29,6 +29,13 @@ setTimeout(()=>{
 
 
 document.addEventListener("DOMContentLoaded", () => {
+    /* Improve mobile modal close */
+document.addEventListener("keydown", e=>{
+  if(e.key==="Escape"){
+    document.getElementById("enquiryModal").classList.remove("active");
+  }
+});
+
 
   /* ===== CONFIG ===== */
   const SCRIPT_URL =
@@ -48,12 +55,6 @@ form.addEventListener("submit", async (e) => {
 
 
 
-  /* Improve mobile modal close */
-document.addEventListener("keydown", e=>{
-  if(e.key==="Escape"){
-    document.getElementById("enquiryModal").classList.remove("active");
-  }
-});
 
   const data = Object.fromEntries(new FormData(form).entries());
 
