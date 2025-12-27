@@ -166,13 +166,11 @@ if (!form) {
   return;
 }
 
-    await fetch(
-      "https://script.google.com/macros/s/AKfycbywfgLETShjD-nNYcjasy4ptEfXI5YqDuLq0d5KKS2wDjKAoT3QWbdBaVo4Wm1Wo6vS2A/exec",
-      {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" }
-      }
+    await fetch("https://script.google.com/macros/s/AKfycbzzELICGtgipGvMV46eGU0sZBSyH3TYJ5JezSlnJDy0DiC6yf-viIQ5KHPC5RyfVoPLNw/exec", {
+  method: "POST",
+  body: JSON.stringify(data)
+});
+
     );
 
     /* Show success animation */
