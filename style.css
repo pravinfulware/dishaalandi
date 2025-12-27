@@ -91,4 +91,10 @@ body{margin:0;font-family:Poppins,sans-serif;background:var(--bg);color:var(--te
 .modal-card{background:var(--card);max-width:520px;margin:10vh auto;padding:40px;border-radius:20px;position:relative;text-align:center}
 .close-btn{position:absolute;top:10px;right:14px;font-size:26px;border:none;background:none}
 .enquiry-form input,.enquiry-form select{width:100%;padding:14px;margin:10px 0;border-radius:10px;border:1px solid #ddd}
-*/
+
+/* Success */
+.success-box{display:none}
+.success-box.active{display:block}
+.checkmark-circle{width:90px;height:90px;border-radius:50%;background:#22c55e;margin:0 auto 20px;display:flex;align-items:center;justify-content:center}
+.checkmark{width:28px;height:50px;border-right:6px solid #fff;border-bottom:6px solid #fff;transform:rotate(45deg)}
+
