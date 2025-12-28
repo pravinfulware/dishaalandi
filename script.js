@@ -135,7 +135,14 @@ async function syncOfflineLeads() {
 
 window.addEventListener("online", syncOfflineLeads);
 
+function isDuplicate(phone) {
+  const key = "lead_" + phone;
+  if (localStorage.getItem(key)) return true;
 
+  localStorage.setItem(key, Date.now());
+  setTimeout(() => localStorage.removeItem(key), 86400000); // 24 hrs
+  return false;
+}
 
   /* ======================
      FORM SUBMIT
@@ -162,6 +169,11 @@ if (phoneInput) {
       phoneInput.setCustomValidity("");
     }
   });
+
+  if (isDuplicate(data.phone)) {
+  alert("We already received your inquiry. Our team will contact you shortly.");
+  return;
+}
 }
 
    const form = document.getElementById("enquiryForm");
