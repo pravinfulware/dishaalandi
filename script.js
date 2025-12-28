@@ -107,6 +107,35 @@ function closeModal() {
     }
   }, 6000);
 
+  /* ======================
+   OFFLINE QUEUE SYSTEM
+   ====================== */
+function saveOfflineLead(data) {
+  const queue = JSON.parse(localStorage.getItem("offlineLeads") || "[]");
+  queue.push(data);
+  localStorage.setItem("offlineLeads", JSON.stringify(queue));
+}
+
+async function syncOfflineLeads() {
+  if (!navigator.onLine) return;
+
+  const queue = JSON.parse(localStorage.getItem("offlineLeads") || "[]");
+  if (!queue.length) return;
+
+  for (const lead of queue) {
+    try {
+      await fetch(SCRIPT_URL, { method: "POST", body: JSON.stringify(lead) });
+    } catch (e) {
+      return;
+    }
+  }
+
+  localStorage.removeItem("offlineLeads");
+}
+
+window.addEventListener("online", syncOfflineLeads);
+
+
 
   /* ======================
      FORM SUBMIT
@@ -165,11 +194,18 @@ if (!form) {
   alert("Please enter a valid Indian mobile number");
   return;
 }
+try {
+  await postWithRetry("https://script.google.com/macros/s/AKfycbzzELICGtgipGvMV46eGU0sZBSyH3TYJ5JezSlnJDy0DiC6yf-viIQ5KHPC5RyfVoPLNw/exec", formData, 3);
+} catch {
+  saveOfflineLead(Object.fromEntries(formData.entries()));
+  alert("You are offline. Your inquiry is saved and will be submitted automatically.");
+}
 
-    await fetch("https://script.google.com/macros/s/AKfycbzzELICGtgipGvMV46eGU0sZBSyH3TYJ5JezSlnJDy0DiC6yf-viIQ5KHPC5RyfVoPLNw/exec", {
+    
+   /* await fetch("https://script.google.com/macros/s/AKfycbzzELICGtgipGvMV46eGU0sZBSyH3TYJ5JezSlnJDy0DiC6yf-viIQ5KHPC5RyfVoPLNw/exec", {
   method: "POST",
   body: JSON.stringify(data)
-});
+});*/
 
   
 
