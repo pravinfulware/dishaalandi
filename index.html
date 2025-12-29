@@ -138,11 +138,15 @@
   >
 
   <input 
-    type="tel"
-    name="phone"
-    placeholder="Phone Number"
-    required
-  >
+  type="tel"
+  name="phone"
+  placeholder="Phone Number"
+  required
+  pattern="[6-9][0-9]{9}"
+  maxlength="10"
+  inputmode="numeric"
+  title="Enter a valid 10-digit Indian mobile number"
+/>
 
   <select name="course" required>
     <option value="">Select Course</option>
