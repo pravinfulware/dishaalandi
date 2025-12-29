@@ -109,7 +109,7 @@ function closeModal() {
 
   /* ======================
    OFFLINE QUEUE SYSTEM
-   ====================== */
+   ====================== 
 function saveOfflineLead(data) {
   const queue = JSON.parse(localStorage.getItem("offlineLeads") || "[]");
   queue.push(data);
@@ -134,7 +134,7 @@ async function syncOfflineLeads() {
 }
 
 window.addEventListener("online", syncOfflineLeads);
-
+*/
 function isDuplicate(phone) {
   const key = "lead_" + phone;
   if (localStorage.getItem(key)) return true;
