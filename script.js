@@ -107,34 +107,6 @@ function closeModal() {
     }
   }, 6000);
 
-  /* ======================
-   OFFLINE QUEUE SYSTEM
-   ====================== 
-function saveOfflineLead(data) {
-  const queue = JSON.parse(localStorage.getItem("offlineLeads") || "[]");
-  queue.push(data);
-  localStorage.setItem("offlineLeads", JSON.stringify(queue));
-}
-
-async function syncOfflineLeads() {
-  if (!navigator.onLine) return;
-
-  const queue = JSON.parse(localStorage.getItem("offlineLeads") || "[]");
-  if (!queue.length) return;
-
-  for (const lead of queue) {
-    try {
-      await fetch(SCRIPT_URL, { method: "POST", body: JSON.stringify(lead) });
-    } catch (e) {
-      return;
-    }
-  }
-
-  localStorage.removeItem("offlineLeads");
-}
-
-window.addEventListener("online", syncOfflineLeads);
-*/
 function isDuplicate(phone) {
   const key = "lead_" + phone;
   if (localStorage.getItem(key)) return true;
@@ -169,12 +141,7 @@ if (phoneInput) {
       phoneInput.setCustomValidity("");
     }
   });
-/*
-  if (isDuplicate(data.phone)) {
-  alert("We already received your inquiry. Our team will contact you shortly.");
-  return;
-}
-*/
+
 
    const form = document.getElementById("enquiryForm");
   const successBox = document.getElementById("successBox");
