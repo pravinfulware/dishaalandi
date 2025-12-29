@@ -1,192 +1,106 @@
-
-const revealItems=document.querySelectorAll('.reveal');
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting)e.target.classList.add('show');
-  });
-},{threshold:0.2});
-revealItems.forEach(el=>obs.observe(el));
-
-
-
-
-/* Theme */
-const toggle=document.getElementById('themeToggle');
-toggle.onclick=()=>document.body.classList.toggle('dark');
-
-/* Modal */
-const modal=document.getElementById('enquiryModal');
-function openModal() {
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-  document.body.classList.add('modal-open');
-}
-
-function closeModal() {
-  modal.classList.remove('active');
-  document.body.style.overflow = '';
-  document.body.classList.remove('modal-open');
-}
-
-/* Auto-open once after 6s */
-setTimeout(()=>{
- if(!localStorage.getItem('popupShown')){
-  openModal();
-  localStorage.setItem('popupShown','yes');
- }
-},6000);
-
-
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ======================
      REVEAL ON SCROLL
      ====================== */
-  const revealItems = document.querySelectorAll('.reveal');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) e.target.classList.add('show');
-    });
-  }, { threshold: 0.2 });
-  revealItems.forEach(el => obs.observe(el));
+  const revealItems = document.querySelectorAll(".reveal");
+  if (revealItems.length) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    }, { threshold: 0.2 });
 
+    revealItems.forEach(el => observer.observe(el));
+  }
 
   /* ======================
      THEME TOGGLE
      ====================== */
-  const toggle = document.getElementById('themeToggle');
+  const toggle = document.getElementById("themeToggle");
   if (toggle) {
-    toggle.onclick = () => document.body.classList.toggle('dark');
+    toggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+    });
   }
-
 
   /* ======================
      MODAL CONTROLS
      ====================== */
-const modal = document.getElementById("enquiryModal");
+  const modal = document.getElementById("enquiryModal");
+  const openButtons = document.querySelectorAll(".open-modal");
+  const closeBtn = document.querySelector(".close-btn");
+  const overlay = document.querySelector(".modal-overlay");
 
-function openModal() {
-  if (!modal) return;
-  modal.classList.add("active");
-  document.body.style.overflow = "hidden";
-  document.body.classList.add("modal-open");
-}
+  function openModal() {
+    if (!modal) return;
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+    document.body.classList.add("modal-open");
+  }
 
-function closeModal() {
-  if (!modal) return;
-  modal.classList.remove("active");
-  document.body.style.overflow = "";
-  document.body.classList.remove("modal-open");
-}
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+    document.body.classList.remove("modal-open");
+  }
 
-  document.querySelectorAll('.open-modal').forEach(btn => {
-    btn.addEventListener('click', openModal);
-  });
+  openButtons.forEach(btn =>
+    btn.addEventListener("click", openModal)
+  );
 
-  const closeBtn = document.querySelector('.close-btn');
-  const overlay = document.querySelector('.modal-overlay');
+  if (closeBtn) closeBtn.addEventListener("click", closeModal);
+  if (overlay) overlay.addEventListener("click", closeModal);
 
-  if (closeBtn) closeBtn.onclick = closeModal;
-  if (overlay) overlay.onclick = closeModal;
-
-  /* ESC key closes modal (THIS IS WHAT YOU ASKED ABOUT) */
-  document.addEventListener("keydown", (e) => {
+  /* ESC key closes modal */
+  document.addEventListener("keydown", e => {
     if (e.key === "Escape") {
       closeModal();
     }
   });
 
-
   /* ======================
      AUTO POPUP (ONCE)
      ====================== */
   setTimeout(() => {
-    if (!localStorage.getItem('popupShown')) {
+    if (!localStorage.getItem("popupShown")) {
       openModal();
-      localStorage.setItem('popupShown', 'yes');
+      localStorage.setItem("popupShown", "yes");
     }
   }, 6000);
 
-function isDuplicate(phone) {
-  const key = "lead_" + phone;
-  if (localStorage.getItem(key)) return true;
-
-  localStorage.setItem(key, Date.now());
-  setTimeout(() => localStorage.removeItem(key), 86400000); // 24 hrs
-  return false;
-}
-
   /* ======================
-     FORM SUBMIT
+     FORM SUBMIT (STABLE)
      ====================== */
-
-  /* ======================
-   PHONE VALIDATION (INDIA)
-   ====================== */
-const phoneInput = document.querySelector(
-  '#enquiryForm input[name="phone"]'
-);
-
-if (phoneInput) {
-  phoneInput.addEventListener("input", () => {
-    // Allow digits only
-    phoneInput.value = phoneInput.value.replace(/\D/g, '');
-
-    // Validate Indian number
-    if (!/^[6-9]\d{9}$/.test(phoneInput.value)) {
-      phoneInput.setCustomValidity(
-        "Please enter a valid 10-digit Indian mobile number"
-      );
-    } else {
-      phoneInput.setCustomValidity("");
-    }
-  });
-
-
-   const form = document.getElementById("enquiryForm");
+  const form = document.getElementById("enquiryForm");
   const successBox = document.getElementById("successBox");
 
-
-if (!form) {
-  console.error("❌ enquiryForm not found");
-} else {
-  console.log("✅ enquiryForm found");
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    console.log("✅ Submit clicked");
-
-    const data = Object.fromEntries(new FormData(form).entries());
-    console.log("Form Data:", data);
-
-    // rest of your code...
-  });
-}
-
+  if (!form) return;
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const data = Object.fromEntries(new FormData(form).entries());
+    const formData = new FormData(form);
 
-    if (!/^[6-9]\d{9}$/.test(data.phone)) {
-  alert("Please enter a valid Indian mobile number");
-  return;
-}
+    try {
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbywfgLETShjD-nNYcjasy4ptEfXI5YqDuLq0d5KKS2wDjKAoT3QWbdBaVo4Wm1Wo6vS2A/exec",
+        {
+          method: "POST",
+          body: formData
+        }
+      );
 
-    
-    await fetch("https://script.google.com/macros/s/AKfycbzzELICGtgipGvMV46eGU0sZBSyH3TYJ5JezSlnJDy0DiC6yf-viIQ5KHPC5RyfVoPLNw/exec", {
-  method: "POST",
-  body: JSON.stringify(data)
-});
+      /* Success animation */
+      form.style.display = "none";
+      successBox.classList.add("active");
 
-  
+      const data = Object.fromEntries(formData.entries());
 
-    /* Show success animation */
-    form.style.display = "none";
-    successBox.classList.add("active");
-
-    const message = `
+      const message = `
 Hello DISHA Computer Institute 👋
 
 📘 Course: ${data.course}
@@ -194,17 +108,23 @@ Hello DISHA Computer Institute 👋
 
 👤 Name: ${data.name}
 📞 Phone: ${data.phone}
-    `;
+      `;
 
-    setTimeout(() => {
-      window.location.href =
-        "https://wa.me/918956444441?text=" + encodeURIComponent(message);
+      setTimeout(() => {
+        window.location.href =
+          "https://wa.me/918956444441?text=" +
+          encodeURIComponent(message);
 
-      form.reset();
-      form.style.display = "block";
-      successBox.classList.remove("active");
-      closeModal();
-    }, 1500);
+        form.reset();
+        form.style.display = "block";
+        successBox.classList.remove("active");
+        closeModal();
+      }, 1500);
+
+    } catch (err) {
+      alert("Submission failed. Please try again.");
+      console.error(err);
+    }
   });
 
 });
