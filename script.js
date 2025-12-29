@@ -84,6 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const data = Object.fromEntries(new FormData(form).entries());
 
+    
+    /*
     await fetch(
       "https://script.google.com/macros/s/AKfycbywfgLETShjD-nNYcjasy4ptEfXI5YqDuLq0d5KKS2wDjKAoT3QWbdBaVo4Wm1Wo6vS2A/exec",
       {
@@ -92,6 +94,11 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: { "Content-Type": "application/json" }
       }
     );
+    */
+    await fetch("https://script.google.com/macros/s/AKfycbywfgLETShjD-nNYcjasy4ptEfXI5YqDuLq0d5KKS2wDjKAoT3QWbdBaVo4Wm1Wo6vS2A/exec", {
+  method: "POST",
+  body: JSON.stringify(data)
+});
 
     /* Success animation */
     form.style.display = "none";
