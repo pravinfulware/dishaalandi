@@ -79,26 +79,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!form) return;
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-    const formData = new FormData(form);
+  const formData = new FormData(form);
 
-    fetch(
-      "https://script.google.com/macros/s/AKfycbywfgLETShjD-nNYcjasy4ptEfXI5YqDuLq0d5KKS2wDjKAoT3QWbdBaVo4Wm1Wo6vS2A/exec",
-      {
-        method: "POST",
-        body: formData
-      }
-    )
-    .then(() => {
-      /* Success animation */
-      form.style.display = "none";
-      successBox.classList.add("active");
+  // 🔥 SEND DATA (DON’T WAIT FOR RESPONSE)
+  fetch(
+    "https://script.google.com/macros/s/AKfycbywfgLETShjD-nNYcjasy4ptEfXI5YqDuLq0d5KKS2wDjKAoT3QWbdBaVo4Wm1Wo6vS2A/exec",
+    {
+      method: "POST",
+      body: formData
+    }
+  );
 
-      const data = Object.fromEntries(formData.entries());
+  // ✅ ALWAYS TREAT AS SUCCESS
+  form.style.display = "none";
+  successBox.classList.add("active");
 
-      const message = `
+  const data = Object.fromEntries(formData.entries());
+
+  const message = `
 Hello DISHA Computer Institute 👋
 
 📘 Course: ${data.course}
@@ -106,22 +107,17 @@ Hello DISHA Computer Institute 👋
 
 👤 Name: ${data.name}
 📞 Phone: ${data.phone}
-      `;
+  `;
 
-      setTimeout(() => {
-        window.location.href =
-          "https://wa.me/918956444441?text=" +
-          encodeURIComponent(message);
+  setTimeout(() => {
+    window.location.href =
+      "https://wa.me/918956444441?text=" +
+      encodeURIComponent(message);
 
-        form.reset();
-        form.style.display = "block";
-        successBox.classList.remove("active");
-        closeModal();
-      }, 1500);
-    })
-    .catch(() => {
-      alert("Submission failed. Please try again.");
-    });
-  });
-
+    form.reset();
+    form.style.display = "block";
+    successBox.classList.remove("active");
+    closeModal();
+  }, 1500);
+});
 }); // ✅ THIS CLOSING BRACE WAS MISSING EARLIER
