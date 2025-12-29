@@ -205,14 +205,8 @@ if (!form) {
     if (!/^[6-9]\d{9}$/.test(data.phone)) {
   alert("Please enter a valid Indian mobile number");
   return;
-}/*
-try {
-  await postWithRetry("https://script.google.com/macros/s/AKfycbzzELICGtgipGvMV46eGU0sZBSyH3TYJ5JezSlnJDy0DiC6yf-viIQ5KHPC5RyfVoPLNw/exec", data, 3);
-} catch {
-  saveOfflineLead(Object.fromEntries(data.entries()));
-  alert("You are offline. Your inquiry is saved and will be submitted automatically.");
 }
-*/
+
     
     await fetch("https://script.google.com/macros/s/AKfycbzzELICGtgipGvMV46eGU0sZBSyH3TYJ5JezSlnJDy0DiC6yf-viIQ5KHPC5RyfVoPLNw/exec", {
   method: "POST",
