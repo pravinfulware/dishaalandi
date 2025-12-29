@@ -48,14 +48,13 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.remove("modal-open");
   }
 
-  openButtons.forEach(btn =>
-    btn.addEventListener("click", openModal)
-  );
+  openButtons.forEach(btn => {
+    btn.addEventListener("click", openModal);
+  });
 
   if (closeBtn) closeBtn.addEventListener("click", closeModal);
   if (overlay) overlay.addEventListener("click", closeModal);
 
-  /* ESC key closes modal */
   document.addEventListener("keydown", e => {
     if (e.key === "Escape") {
       closeModal();
@@ -80,24 +79,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!form) return;
 
-  form.addEventListener("submit", async (e) => {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const formData = new FormData(form);
 
-    try {
-     fetch("https://script.google.com/macros/s/AKfycbywfgLETShjD-nNYcjasy4ptEfXI5YqDuLq0d5KKS2wDjKAoT3QWbdBaVo4Wm1Wo6vS2A/exec", {
-  method: "POST",
-  body: formData
-})
-.then(() => {
-  /* Treat as success always */
-  form.style.display = "none";
-  successBox.classList.add("active");
+    fetch(
+      "https://script.google.com/macros/s/AKfycbywfgLETShjD-nNYcjasy4ptEfXI5YqDuLq0d5KKS2wDjKAoT3QWbdBaVo4Wm1Wo6vS2A/exec",
+      {
+        method: "POST",
+        body: formData
+      }
+    )
+    .then(() => {
+      /* Success animation */
+      form.style.display = "none";
+      successBox.classList.add("active");
 
-  const data = Object.fromEntries(formData.entries());
+      const data = Object.fromEntries(formData.entries());
 
-  const message = `
+      const message = `
 Hello DISHA Computer Institute 👋
 
 📘 Course: ${data.course}
@@ -105,27 +106,22 @@ Hello DISHA Computer Institute 👋
 
 👤 Name: ${data.name}
 📞 Phone: ${data.phone}
-  `;
+      `;
 
-  setTimeout(() => {
-    window.location.href =
-      "https://wa.me/918956444441?text=" +
-      encodeURIComponent(message);
+      setTimeout(() => {
+        window.location.href =
+          "https://wa.me/918956444441?text=" +
+          encodeURIComponent(message);
 
-    form.reset();
-    form.style.display = "block";
-    successBox.classList.remove("active");
-    closeModal();
-  }, 1500);
-})
-.catch(() => {
-  /* EVEN if fetch errors, still proceed */
-  form.style.display = "none";
-  successBox.classList.add("active");
+        form.reset();
+        form.style.display = "block";
+        successBox.classList.remove("active");
+        closeModal();
+      }, 1500);
+    })
+    .catch(() => {
+      alert("Submission failed. Please try again.");
+    });
+  });
 
-  setTimeout(() => {
-    window.location.href = "https://wa.me/918956444441";
-    form.reset();
-    closeModal();
-  }, 1500);
-});
+}); // ✅ THIS CLOSING BRACE WAS MISSING EARLIER
