@@ -158,14 +158,7 @@ Hello DISHA Computer Institute 👋
         "https://wa.me/918956444441?text=" +
         encodeURIComponent(message);
 
-      form.reset();
-      form.style.display = "block";
-      successBox.classList.remove("active");
-      closeModal();
-    }, 1500);
-
-
-    setTimeout(() => {
+      setTimeout(() => {
   window.open(
     "https://wa.me/918956444441?text=" +
     encodeURIComponent("Hi 👋 Just checking if you need help choosing the right course."),
@@ -173,6 +166,15 @@ Hello DISHA Computer Institute 👋
   );
 }, 600000); // 10 minutes
 
+
+      form.reset();
+      form.style.display = "block";
+      successBox.classList.remove("active");
+      closeModal();
+    }, 1500);
+
+
+  
   });
 
 });
