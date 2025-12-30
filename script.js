@@ -145,11 +145,12 @@ if (!/^[6-9]\d{9}$/.test(data.phone)) {
     const message = `
 Hello DISHA Computer Institute 👋
 
+👤 Name: ${data.name}
+📞 Phone: ${data.phone}
 📘 Course: ${data.course}
 🏫 Branch: ${data.branch}
 
-👤 Name: ${data.name}
-📞 Phone: ${data.phone}
+
     `;
 
     setTimeout(() => {
